@@ -68,11 +68,10 @@ nav.scrolled {
   text-decoration: none; flex-shrink: 0;
 }
 .nav-logo-mark {
-  width: 32px; height: 32px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-light));
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 800; font-size: 14px;
-  box-shadow: 0 2px 8px rgba(232,69,10,.25);
+  width: 40px; height: 40px; border-radius: 50%;
+  object-fit: cover; display: block;
+  background: var(--white);
+  box-shadow: 0 2px 10px rgba(27,27,47,.18);
 }
 .nav-logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; }
 .nav-right { display: flex; align-items: center; gap: 6px; }
@@ -152,10 +151,20 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   animation: fadeUp .5s .08s ease both;
 }
 .hero h1 em { font-style: normal; color: var(--orange); }
+.hero h1 .soft { font-weight: 500; color: var(--text2); }
+.hero h1 strong { font-weight: 800; color: var(--text); }
+.hero h1 .accent { color: var(--orange); }
 .hero-sub {
   margin: 18px auto 0; max-width: 500px;
   color: var(--text2); font-size: 1.05rem; line-height: 1.7;
   animation: fadeUp .5s .16s ease both;
+}
+.hero-video-frame {
+  width: min(100%, 360px); aspect-ratio: 9 / 16;
+  display: block; margin: 30px auto 0;
+  border: 0; border-radius: var(--radius-xl);
+  background: var(--dark); box-shadow: var(--shadow-lg);
+  animation: fadeUp .5s .2s ease both;
 }
 .hero-actions {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
@@ -223,12 +232,15 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .proof-stars { color: #FBBF24; letter-spacing: .05em; }
 
 /* ── CALCULATOR ── */
-.calc-section { padding: 0 0 48px; }
+.calc-section { padding: 32px 0 120px; }
 .calc-card {
-  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
-  border-radius: var(--radius-xl); padding: 32px 28px; color: white;
+  background:
+    radial-gradient(circle at 50% -20%, rgba(255,107,53,.2), transparent 46%),
+    linear-gradient(135deg, #171729 0%, #23233C 100%);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-xl); padding: 34px 30px; color: white;
   text-align: center; max-width: 560px; margin: 0 auto;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 18px 54px rgba(27,27,47,.18), 0 2px 8px rgba(27,27,47,.08);
 }
 .calc-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
 .calc-lead {
@@ -307,11 +319,33 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .why-card p { font-size: .875rem; color: var(--text2); line-height: 1.6; }
 
 /* ── PRICING ── */
+.pricing-dark {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(232,69,10,.16), transparent 34%),
+    radial-gradient(circle at 12% 22%, rgba(255,107,53,.08), transparent 28%),
+    linear-gradient(180deg, #11111F 0%, #171728 52%, #0B0B13 100%);
+  margin-top: 48px;
+  border-top: 1px solid rgba(232,69,10,.12);
+  border-bottom: 1px solid rgba(232,69,10,.2);
+  position: relative; overflow: hidden;
+}
+.pricing-dark::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: min(860px, 86vw); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,107,53,.55), transparent);
+}
+.pricing-dark .section { padding-top: 96px; }
+.pricing-dark .section-label { color: var(--orange-light); }
+.pricing-dark .section-title { color: var(--white); }
+.pricing-dark .section-sub { color: rgba(255,255,255,.62); }
 .billing-toggle {
-  display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 40px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 32px;
 }
 .billing-lbl { font-size: .875rem; font-weight: 500; color: var(--text3); transition: color .2s; }
 .billing-lbl.on { color: var(--text); }
+.pricing-dark .billing-lbl { color: rgba(255,255,255,.4); }
+.pricing-dark .billing-lbl.on { color: var(--white); }
 .toggle-switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
 .toggle-switch input { opacity: 0; position: absolute; width: 0; height: 0; }
 .switch-track {
@@ -330,6 +364,24 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   border: 1px solid #BBF7D0; font-size: .7rem; font-weight: 700;
   padding: 2px 8px; border-radius: 100px; display: none;
 }
+.pricing-dark .plan-picker {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.12);
+  margin-bottom: 32px;
+}
+.pricing-dark .plan-pick { color: rgba(255,255,255,.62); }
+.pricing-dark .plan-pick:hover { color: var(--white); }
+.pricing-dark .plan-pick.active {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 8px 28px rgba(232,69,10,.36);
+}
+.pricing-dark .savings-banner {
+  background: rgba(22,163,74,.12);
+  border-color: rgba(74,222,128,.25);
+  color: rgba(255,255,255,.7);
+}
+.pricing-dark .savings-banner strong { color: #4ADE80; }
 
 .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media(max-width:840px){ .plans-grid { grid-template-columns: 1fr; } }
@@ -340,11 +392,24 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   position: relative; transition: box-shadow .25s, transform .25s, border-color .25s;
   display: flex; flex-direction: column; cursor: pointer;
 }
+.pricing-dark .plan-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 18px 50px rgba(0,0,0,.2);
+}
 .plan-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.pricing-dark .plan-card:hover {
+  border-color: rgba(255,107,53,.55);
+  box-shadow: 0 22px 60px rgba(0,0,0,.34), 0 0 0 1px rgba(232,69,10,.18);
+}
 .plan-card.selected {
   border-color: var(--orange);
   box-shadow: 0 0 0 2px var(--orange), var(--shadow-lg);
   transform: translateY(-4px);
+}
+.pricing-dark .plan-card.selected {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 2px var(--orange), 0 24px 70px rgba(232,69,10,.2);
 }
 .plan-card.featured {
   border-color: var(--orange);
@@ -368,6 +433,15 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 
 .plan-name { font-size: 1.3rem; font-weight: 800; color: var(--text); }
 .plan-tagline { font-size: .82rem; color: var(--text3); margin-top: 4px; min-height: 34px; }
+.pricing-dark .plan-name,
+.pricing-dark .plan-price,
+.pricing-dark .plan-annual-price { color: var(--white); }
+.pricing-dark .plan-tagline,
+.pricing-dark .plan-price small,
+.pricing-dark .plan-annual-price small,
+.pricing-dark .plan-annual-block .annual-was,
+.pricing-dark .plan-annual-block .annual-total .eq { color: rgba(255,255,255,.45); }
+.pricing-dark .plan-annual-block .annual-total { color: #4ADE80; }
 
 .plan-price-wrap { margin: 20px 0; }
 .plan-price { font-size: 2.4rem; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
@@ -386,6 +460,7 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .plan-annual-block .annual-total .eq { color: var(--text3); font-weight: 500; }
 
 .plan-divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
+.pricing-dark .plan-divider { border-top-color: rgba(255,255,255,.1); }
 
 .feature-list { list-style: none; display: flex; flex-direction: column; gap: 9px; flex: 1; }
 .feature-list li { display: flex; align-items: flex-start; gap: 9px; font-size: .85rem; color: var(--text2); }
@@ -393,6 +468,10 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .fi { width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .6rem; flex-shrink: 0; margin-top: 1px; }
 .fi.y { background: var(--green-bg); color: var(--green); font-size: .65rem; }
 .fi.n { background: var(--border2); color: var(--text3); }
+.pricing-dark .feature-list li { color: rgba(255,255,255,.38); }
+.pricing-dark .feature-list li.has { color: rgba(255,255,255,.82); }
+.pricing-dark .fi.y { background: rgba(22,163,74,.18); color: #4ADE80; }
+.pricing-dark .fi.n { background: rgba(255,255,255,.08); color: rgba(255,255,255,.28); }
 
 .plan-cta {
   display: block; text-align: center; margin-top: 24px;
@@ -406,6 +485,74 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .cta-growth { background: var(--orange); color: white; box-shadow: 0 4px 14px rgba(232,69,10,.3); }
 .cta-growth:hover { opacity: 1; box-shadow: 0 6px 20px rgba(232,69,10,.4); }
 .cta-pro { background: var(--dark); color: white; }
+.pricing-dark .cta-start {
+  background: rgba(255,255,255,.08);
+  color: var(--white);
+  border-color: rgba(255,255,255,.16);
+}
+.pricing-dark .cta-start:hover { border-color: rgba(255,255,255,.34); }
+.pricing-dark .cta-growth {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 10px 28px rgba(232,69,10,.35);
+}
+.pricing-dark .cta-pro {
+  background: var(--white);
+  color: var(--dark);
+}
+
+/* ── CHECKOUT MODAL ── */
+.checkout-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(8,8,15,.78);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.checkout-modal.open { display: flex; }
+.checkout-dialog {
+  width: min(100%, 980px); height: min(92vh, 760px);
+  background: var(--white); border-radius: var(--radius-xl);
+  overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,.38);
+  display: flex; flex-direction: column;
+}
+.checkout-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 14px 16px 14px 20px;
+  background: linear-gradient(135deg, var(--dark), #08080F);
+  color: var(--white);
+}
+.checkout-title { font-size: .95rem; font-weight: 800; }
+.checkout-close {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08); color: var(--white);
+  font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.checkout-frame { width: 100%; flex: 1; border: 0; background: var(--white); }
+.checkout-body { position: relative; flex: 1; display: flex; min-height: 0; }
+.checkout-fallback {
+  position: absolute; inset: 0;
+  display: none; align-items: center; justify-content: center;
+  padding: 28px; background: var(--white); text-align: center;
+}
+.checkout-fallback.show { display: flex; }
+.checkout-fallback-card { max-width: 420px; }
+.checkout-fallback-card h3 {
+  font-size: 1.25rem; line-height: 1.25; color: var(--text); margin-bottom: 10px;
+}
+.checkout-fallback-card p {
+  color: var(--text2); font-size: .95rem; line-height: 1.6; margin-bottom: 18px;
+}
+.checkout-fallback-card a {
+  display: inline-block; padding: 13px 22px; border-radius: var(--radius);
+  background: var(--orange); color: var(--white); text-decoration: none; font-weight: 800;
+  box-shadow: 0 8px 24px rgba(232,69,10,.28);
+}
+body.checkout-open { overflow: hidden; }
+@media(max-width:600px){
+  .checkout-modal { padding: 10px; }
+  .checkout-dialog { height: 92vh; border-radius: var(--radius-lg); }
+}
 
 /* ── COMPARE TABLE ── */
 .compare-wrap { overflow-x: auto; }
@@ -465,24 +612,46 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .faq-item.open .faq-a { max-height: 400px; padding-bottom: 18px; }
 
 /* ── TESTIMONIALS ── */
-.testimonials { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.testimonial-slider { position: relative; max-width: 640px; margin: 0 auto; min-height: 160px; }
-.testimonial-slide {
-  position: absolute; inset: 0; opacity: 0; transform: translateX(20px);
-  transition: opacity .45s ease, transform .45s ease; pointer-events: none;
+.testimonials { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.reviews-summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
   background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
-  padding: 28px; text-align: center;
+  padding: 14px 18px; margin-bottom: 18px; box-shadow: var(--shadow-sm);
 }
-.testimonial-slide.active { opacity: 1; transform: none; pointer-events: auto; position: relative; }
-.testimonial-slide p { font-size: 1rem; color: var(--text); line-height: 1.7; font-style: italic; }
-.testimonial-slide .t-author { margin-top: 16px; font-size: .85rem; font-weight: 700; color: var(--text); font-style: normal; }
-.testimonial-slide .t-role { font-size: .78rem; color: var(--text3); font-weight: 500; }
-.testimonial-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-.testimonial-dots button {
-  width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border);
-  cursor: pointer; padding: 0; transition: background .2s, transform .2s;
+.reviews-score { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.google-word { font-size: .9rem; font-weight: 800; letter-spacing: -0.02em; }
+.google-word span:nth-child(1) { color: #4285F4; }
+.google-word span:nth-child(2) { color: #DB4437; }
+.google-word span:nth-child(3) { color: #F4B400; }
+.google-word span:nth-child(4) { color: #4285F4; }
+.google-word span:nth-child(5) { color: #0F9D58; }
+.google-word span:nth-child(6) { color: #DB4437; }
+.reviews-rating { color: #FBBF24; letter-spacing: .06em; font-size: .95rem; }
+.reviews-meta { color: var(--text2); font-size: .85rem; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.review-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 18px; box-shadow: var(--shadow-sm);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
 }
-.testimonial-dots button.active { background: var(--orange); transform: scale(1.2); }
+.review-card:hover { transform: translateY(-2px); border-color: var(--orange-border); box-shadow: var(--shadow); }
+.review-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.review-photo {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: block; flex-shrink: 0; object-fit: cover;
+  border: 2px solid var(--white); box-shadow: 0 2px 8px rgba(27,27,47,.12);
+}
+.review-person { flex: 1; min-width: 0; }
+.review-name { font-size: .9rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+.review-role { font-size: .75rem; color: var(--text3); margin-top: 2px; }
+.review-google { color: #4285F4; font-weight: 800; font-size: .85rem; }
+.review-stars { color: #FBBF24; font-size: .78rem; letter-spacing: .05em; margin-bottom: 8px; }
+.review-card p { color: var(--text2); font-size: .86rem; line-height: 1.6; }
+@media(max-width:900px){ .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:620px){
+  .reviews-summary { align-items: flex-start; flex-direction: column; }
+  .reviews-grid { grid-template-columns: 1fr; }
+}
 
 /* ── STICKY CTA ── */
 .sticky-cta {
@@ -503,9 +672,10 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   position: fixed; bottom: 88px; right: 20px; z-index: 89;
   width: 56px; height: 56px; border-radius: 50%;
   background: #25D366; color: white; display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.45);
+  text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.45);
   transition: transform .2s, box-shadow .2s;
 }
+.wa-float svg { width: 30px; height: 30px; display: block; fill: currentColor; }
 .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
 .wa-float::after {
   content: 'Dúvidas?'; position: absolute; right: 64px; top: 50%; transform: translateY(-50%);
@@ -514,7 +684,10 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   pointer-events: none; transition: opacity .2s;
 }
 .wa-float:hover::after { opacity: 1; }
-@media(max-width:600px){ .wa-float { bottom: 80px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; } }
+@media(max-width:600px){
+  .wa-float { bottom: 80px; right: 16px; width: 50px; height: 50px; }
+  .wa-float svg { width: 27px; height: 27px; }
+}
 
 /* ── CTA FINAL ── */
 .cta-final {
@@ -545,8 +718,9 @@ footer {
 }
 .footer-logo { display: flex; align-items: center; gap: 8px; }
 .footer-logo-mark {
-  width: 24px; height: 24px; border-radius: 6px; background: var(--orange);
-  display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 11px;
+  width: 30px; height: 30px; border-radius: 50%;
+  object-fit: cover; display: block;
+  background: var(--white);
 }
 .footer-logo-text { font-weight: 700; font-size: .9rem; color: white; }
 footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
@@ -578,7 +752,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 <nav id="top">
   <div class="nav-inner">
   <a href="#top" class="nav-logo" aria-label="Vyria — voltar ao topo">
-    <div class="nav-logo-mark">V</div>
+    <img class="nav-logo-mark" src="assets/logo-vyria-delivery.jpg" alt="Vyria Delivery">
     <span class="nav-logo-text">Vyria</span>
   </a>
   <div class="nav-right">
@@ -605,16 +779,12 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Delivery <em>&amp;</em> Presencial.<br>Um só plano.</h1>
-  <p class="hero-sub">Gerencie balcão, salão e pedidos online no mesmo painel que você já conhece — sem pagar por dois sistemas separados.</p>
+  <h1><span class="soft">Chega de</span> <strong>perder dinheiro</strong> <span class="soft">com a</span> <strong>bagunça do papel</strong> <span class="soft">ou pagando</span> <strong class="accent">taxas absurdas</strong> <span class="soft">para vários sistemas.</span></h1>
+  <p class="hero-sub">Centralize seu Delivery, Balcão e Mesas em um único painel. O Vyria é o sistema mais simples do mercado, feito para quem quer organizar o restaurante em minutos e parar de queimar o lucro com mensalidades acumuladas.</p>
+  <iframe class="hero-video-frame" src="https://www.youtube.com/embed/_td7LHSvJXQ?rel=0&modestbranding=1&playsinline=1" title="Demonstração do Vyria Delivery" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy"></iframe>
   <div class="hero-actions">
-    <button class="btn-primary btn-lg js-scroll-planos">Testar 5 dias grátis →</button>
+    <button class="btn-primary btn-lg js-scroll-planos">Quero Organizar Meu Restaurante</button>
     <button class="btn-ghost js-scroll-planos">Ver planos e preços</button>
-  </div>
-  <div class="hero-trust">
-    <span>5 dias grátis</span>
-    <span>Sem cartão no teste</span>
-    <span>Suporte incluso</span>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-ico">🍽️</div><div class="stat-val">3 em 1</div><div class="stat-lbl">Balcão · Mesas · Pedidos Online</div></div>
@@ -636,30 +806,29 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 <div class="container">
 <div class="section reveal">
   <div class="section-header">
-    <span class="section-label">Por que híbrido?</span>
-    <h2 class="section-title">Os dois canais trabalhando juntos.</h2>
-    <p class="section-sub">Pare de gerenciar delivery e presencial como se fossem negócios diferentes. Com o modelo Híbrido, tudo conversa em um só lugar.</p>
+    <h2 class="section-title">Feito para quem cansou do caos do papel e do abuso das taxas.</h2>
+    <p class="section-sub">Organize pedidos, equipe e financeiro sem depender de comandas soltas, planilhas confusas ou várias assinaturas ao mesmo tempo.</p>
   </div>
   <div class="why-grid">
     <div class="why-card">
-      <div class="why-icon">🖥️</div>
-      <h3>PDV + pedidos online</h3>
-      <p>Atenda no balcão e receba pedidos do link/QR ao mesmo tempo, em uma só tela.</p>
+      <div class="why-icon">🧾</div>
+      <h3>Adeus, Comandas Perdidas!</h3>
+      <p>Se você ainda usa papel e caneta, sabe o prejuízo que é um pedido esquecido na cozinha ou uma conta somada errada. No Vyria, com 2 cliques você lança o pedido e ele vai direto para a tela da cozinha. Zero papel, zero erro.</p>
     </div>
     <div class="why-card">
-      <div class="why-icon">🛵</div>
-      <h3>Taxa e zona de entrega</h3>
-      <p>Configure raio de entrega e valor de taxa diretamente no painel, sem intermediários.</p>
+      <div class="why-icon">💰</div>
+      <h3>Um Único Sistema (E Mais Dinheiro no Bolso)</h3>
+      <p>Pare de pagar uma mensalidade para o robô do WhatsApp, outra para o sistema do balcão e outra para os relatórios. O Vyria junta tudo isso por uma única assinatura fixa. Sem taxas por pedido, sem surpresas no fim do mês.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <h3>Tão Simples que Qualquer um Sabe Mexer</h3>
+      <p>Tem medo de sistema complicado? O Vyria foi desenhado para ser visual e intuitivo. Se você sabe mexer no WhatsApp, você sabe mexer no Vyria. Sua equipe aprende a usar no primeiro dia.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">📊</div>
-      <h3>Relatórios unificados</h3>
-      <p>Veja o desempenho de todos os canais — balcão, salão e online — em um só relatório.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🧾</div>
-      <h3>Caixa de todos os canais</h3>
-      <p>No Pro, feche turno com comandas de balcão, garçom e delivery juntos. Sem perda de informação.</p>
+      <h3>Caixa Blindado e Relatórios Reais</h3>
+      <p>Chega de passar horas calculando o faturamento na calculadora. Descubra exatamente quanto seu restaurante vendeu no dia (no balcão e no delivery) com um relatório automático e visual.</p>
     </div>
   </div>
 </div>
@@ -670,7 +839,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 <div class="container calc-section reveal">
   <div class="calc-card">
     <h3>Quanto dinheiro some quando o pedido se perde?</h3>
-    <p class="calc-lead">Sem um painel único, é comum não fechar o caixa direito, errar item, esquecer pedido do WhatsApp ou cobrar valor errado — e o prejuízo passa batido.</p>
+    <p class="calc-lead">No papel, os erros de soma passam batidos. Nos sistemas antigos, as taxas escondidas comem sua margem. Arraste o simulador abaixo e veja quanto dinheiro você pode estar deixando escapar por mês sem o controle do Vyria:</p>
     <label for="orders-range">Quantos pedidos sua loja faz por dia?</label>
     <input type="range" class="calc-slider" id="orders-range" min="15" max="200" value="60" step="5">
     <div class="calc-val" id="orders-val">60 pedidos/dia</div>
@@ -680,7 +849,8 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 </div>
 
 <!-- PRICING -->
-<div class="container" id="planos">
+<div class="pricing-dark" id="planos">
+<div class="container">
 <div class="section reveal">
   <div class="section-header" style="text-align:center">
     <span class="section-label">Planos</span>
@@ -735,7 +905,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
         <li><span class="fi n">–</span> Garçom / QR de mesa</li>
         <li><span class="fi n">–</span> Entregadores e promoções</li>
       </ul>
-      <a href="#" class="plan-cta cta-start">Começar com Start</a>
+      <a href="https://pay.cakto.com.br/e5nj5bt_903061" class="plan-cta cta-start" data-checkout-open data-checkout-plan="Start" data-checkout-url="https://pay.cakto.com.br/e5nj5bt_903061">Começar com Start</a>
     </div>
 
     <!-- GROWTH -->
@@ -764,7 +934,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
         <li class="has"><span class="fi y">✓</span> Importar cardápio por foto (IA)</li>
         <li><span class="fi n">–</span> Caixa, KDS e impressão</li>
       </ul>
-      <a href="#" class="plan-cta cta-growth">Começar com Growth</a>
+      <a href="https://pay.cakto.com.br/38gasay_903090" class="plan-cta cta-growth" data-checkout-open data-checkout-plan="Growth" data-checkout-url="https://pay.cakto.com.br/38gasay_903090">Começar com Growth</a>
     </div>
 
     <!-- PRO -->
@@ -791,11 +961,32 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
         <li class="has"><span class="fi y">✓</span> Relatórios avançados</li>
         <li class="has"><span class="fi y">✓</span> IA de produto (desc. + imagem)</li>
       </ul>
-      <a href="#" class="plan-cta cta-pro">Começar com Pro</a>
+      <a href="https://pay.cakto.com.br/35qmyn2_903104" class="plan-cta cta-pro" data-checkout-open data-checkout-plan="Pro" data-checkout-url="https://pay.cakto.com.br/35qmyn2_903104">Começar com Pro</a>
     </div>
 
   </div>
 </div>
+</div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="checkout-modal" id="checkout-modal" aria-hidden="true">
+  <div class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <div class="checkout-header">
+      <div class="checkout-title" id="checkout-title">Checkout</div>
+      <button type="button" class="checkout-close" id="checkout-close" aria-label="Fechar checkout">×</button>
+    </div>
+    <div class="checkout-body">
+      <iframe class="checkout-frame" id="checkout-frame" title="Checkout do plano" allow="payment *"></iframe>
+      <div class="checkout-fallback" id="checkout-fallback">
+        <div class="checkout-fallback-card">
+          <h3>O checkout seguro bloqueou a exibição dentro do site.</h3>
+          <p>Alguns provedores de pagamento impedem iframe por segurança. Abra o checkout em uma janela segura mantendo esta página aberta.</p>
+          <a href="#" id="checkout-fallback-link" target="_blank" rel="noopener">Abrir checkout seguro</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- COMPARE TABLE -->
@@ -853,27 +1044,100 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 <div class="container">
 <div class="section reveal">
   <div class="section-header" style="text-align:center">
-    <span class="section-label">Depoimentos</span>
-    <h2 class="section-title">Quem usa, recomenda.</h2>
+    <span class="section-label">Avaliações</span>
+    <h2 class="section-title">Quem já usa a Vyria.</h2>
+    <p class="section-sub" style="margin:10px auto 0">Restaurantes, lanchonetes e cafeterias organizando pedidos, caixa e delivery no mesmo lugar.</p>
   </div>
-  <div class="testimonial-slider" id="testimonial-slider">
-    <div class="testimonial-slide active">
-      <p>"Antes eu tinha um sistema pro balcão e outro pro delivery. Com o Vyria híbrido, fecho o caixa uma vez só. Mudou minha rotina."</p>
-      <div class="t-author">Marina Costa</div>
-      <div class="t-role">Hamburgueria · Belo Horizonte — plano Growth</div>
+
+  <div class="reviews-summary">
+    <div class="reviews-score">
+      <span class="google-word" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
+      <strong>Excelente</strong>
+      <span class="reviews-rating">★★★★★</span>
+      <span class="reviews-meta">5,0 · 433 avaliações</span>
     </div>
-    <div class="testimonial-slide">
-      <p>"O QR de mesa e o link de pedidos no mesmo painel. Minha equipe aprendeu em um dia. O suporte respondeu rápido no WhatsApp."</p>
-      <div class="t-author">Ricardo Alves</div>
-      <div class="t-role">Pizzaria · Curitiba — plano Pro</div>
+    <span class="reviews-meta">Atendimento rápido, painel simples e operação mais organizada.</span>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=12" alt="Foto de Caio Sergio" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Caio Sergio</div>
+          <div class="review-role">Delivery de lanches</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>Sistema bom demais, acompanho em tempo real pelo smartphone e não dependo mais de papel.</p>
     </div>
-    <div class="testimonial-slide">
-      <p>"Comecei no Start só com delivery e balcão. Em duas semanas fiz upgrade pro Growth. Valeu cada centavo."</p>
-      <div class="t-author">Fernanda Lima</div>
-      <div class="t-role">Cafeteria · São Paulo — plano Start → Growth</div>
+
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=47" alt="Foto de Monique Peres" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Monique Peres</div>
+          <div class="review-role">Lanchonete</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>Ótima experiência, atendimento impecável e sistema muito funcional para equipe pequena.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=32" alt="Foto de Alan Barbosa" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Alan Barbosa</div>
+          <div class="review-role">Pizzaria</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>O melhor do mercado. Muito fácil de operar e o suporte responde rápido.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=45" alt="Foto de Ana Paula Andrade" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Ana Paula Andrade</div>
+          <div class="review-role">Restaurante</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>Sistema completo. Estou atendendo todos os pedidos e minha equipe evoluiu muito.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=14" alt="Foto de Gabriel Assalin" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Gabriel Assalin</div>
+          <div class="review-role">Hamburgueria</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>Tenho gerido bem meu negócio com o painel. Recomendo de olhos fechados.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head">
+        <img class="review-photo" src="https://i.pravatar.cc/80?img=49" alt="Foto de Gisele Martins" loading="lazy">
+        <div class="review-person">
+          <div class="review-name">Gisele Martins</div>
+          <div class="review-role">Açaiteria</div>
+        </div>
+        <div class="review-google">G</div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p>Estou com a Vyria há meses e o principal é o suporte: sempre ajudam quando preciso.</p>
     </div>
   </div>
-  <div class="testimonial-dots" id="testimonial-dots"></div>
 </div>
 </div>
 </div>
@@ -886,6 +1150,18 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
     <h2 class="section-title">Perguntas frequentes.</h2>
   </div>
   <div class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">Eu ainda uso papel e caneta e não entendo muito de computador. Vou conseguir usar?<span class="faq-ico">+</span></button>
+      <div class="faq-a">Com certeza! O Vyria foi feito justamente para quem quer sair do papel sem complicação. Ele é extremamente simples, limpo e direto ao ponto. Além disso, nosso suporte ajuda você no início para garantir que tudo funcione perfeitamente.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">Já uso outros sistemas. Como faço para mudar para o Vyria?<span class="faq-ico">+</span></button>
+      <div class="faq-a">A transição é imediata. Você não precisa instalar nada no computador, basta acessar pelo navegador. Você cancela as assinaturas caras que tem hoje e, em poucos minutos, já configura seu cardápio e começa a vender pelo Vyria pagando apenas uma taxa fixa.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">O Vyria cobra comissão ou taxa por pedido faturado?<span class="faq-ico">+</span></button>
+      <div class="faq-a">Não cobramos nenhuma taxa sobre as suas vendas. O lucro do seu restaurante é 100% seu. Você escolhe o seu plano e paga apenas o valor fixo da assinatura mensal, sem letras miúdas.</div>
+    </div>
     <div class="faq-item">
       <button type="button" class="faq-q" aria-expanded="false">O que é o modelo Híbrido?<span class="faq-ico">+</span></button>
       <div class="faq-a">É a combinação de Delivery e Presencial no mesmo plano. Você gerencia balcão, salão e pedidos online em um único painel Vyria, sem precisar de dois sistemas separados.</div>
@@ -928,12 +1204,16 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
   <button type="button" class="btn-primary js-scroll-planos">Começar agora →</button>
 </div>
 
-<a href="https://wa.me/5562995597811?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20planos%20híbridos%20Vyria" class="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
+<a href="https://wa.me/5562995597811?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20planos%20híbridos%20Vyria" class="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <path d="M16.02 3.2c-7.03 0-12.75 5.67-12.75 12.64 0 2.23.59 4.41 1.72 6.33L3.2 28.8l6.83-1.79a12.84 12.84 0 0 0 5.99 1.51c7.03 0 12.75-5.67 12.75-12.64S23.05 3.2 16.02 3.2Zm0 22.98c-1.9 0-3.75-.51-5.37-1.48l-.39-.23-4.05 1.06 1.08-3.93-.25-.4a10.25 10.25 0 0 1-1.58-5.36c0-5.68 4.74-10.3 10.56-10.3s10.56 4.62 10.56 10.3-4.74 10.34-10.56 10.34Zm5.79-7.73c-.32-.16-1.88-.92-2.17-1.02-.29-.11-.5-.16-.71.16-.21.32-.82 1.02-1 1.23-.18.21-.37.24-.69.08-.32-.16-1.35-.49-2.57-1.57-.95-.84-1.59-1.88-1.78-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.69-.97-2.31-.26-.61-.52-.52-.71-.53h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.07-1.11 2.62 0 1.55 1.14 3.04 1.3 3.25.16.21 2.24 3.39 5.43 4.75.76.32 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.88-.76 2.14-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.61-.37Z"/>
+  </svg>
+</a>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <div class="footer-logo-mark">V</div>
+    <img class="footer-logo-mark" src="assets/logo-vyria-delivery.jpg" alt="Vyria Delivery">
     <span class="footer-logo-text">Vyria</span>
   </div>
   <p>© 2025 Vyria · Todos os direitos reservados</p>
@@ -952,6 +1232,13 @@ const stickyCta = document.getElementById('sticky-cta');
 const hero = document.querySelector('.hero');
 const savingsBanner = document.getElementById('savings-banner');
 const tog = document.getElementById('billing-tog');
+const checkoutModal = document.getElementById('checkout-modal');
+const checkoutFrame = document.getElementById('checkout-frame');
+const checkoutClose = document.getElementById('checkout-close');
+const checkoutFallback = document.getElementById('checkout-fallback');
+const checkoutTitle = document.getElementById('checkout-title');
+const checkoutFallbackLink = document.getElementById('checkout-fallback-link');
+let checkoutFallbackTimer;
 
 // Scroll: nav shadow, sticky CTA, active section
 const sectionIds = ['planos', 'comparativo', 'depoimentos', 'faq'];
@@ -990,6 +1277,56 @@ document.querySelectorAll('.js-scroll-planos').forEach(btn => {
   btn.addEventListener('click', () => {
     document.getElementById('planos').scrollIntoView({ behavior: 'smooth' });
   });
+});
+
+function openCheckout(url, planName, showFallback) {
+  if (!checkoutModal || !checkoutFrame) return;
+  clearTimeout(checkoutFallbackTimer);
+  checkoutFallback?.classList.remove('show');
+  const checkoutUrl = url || '';
+  const checkoutPlanName = planName || 'plano';
+  if (checkoutTitle) checkoutTitle.textContent = 'Checkout ' + checkoutPlanName;
+  checkoutFrame.title = 'Checkout do plano ' + checkoutPlanName;
+  if (checkoutFallbackLink) checkoutFallbackLink.href = checkoutUrl;
+  checkoutModal.classList.add('open');
+  checkoutModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('checkout-open');
+  checkoutFrame.src = checkoutUrl;
+  if (showFallback) {
+    checkoutFallbackTimer = setTimeout(() => {
+      checkoutFallback?.classList.add('show');
+    }, 4500);
+  }
+  checkoutClose?.focus();
+}
+
+function closeCheckout() {
+  if (!checkoutModal || !checkoutFrame) return;
+  clearTimeout(checkoutFallbackTimer);
+  checkoutModal.classList.remove('open');
+  checkoutModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('checkout-open');
+  checkoutFallback?.classList.remove('show');
+  checkoutFrame.src = '';
+}
+
+document.querySelectorAll('[data-checkout-open]').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    openCheckout(
+      btn.dataset.checkoutUrl || btn.href,
+      btn.dataset.checkoutPlan,
+      btn.dataset.checkoutFallback === 'true'
+    );
+  });
+});
+
+checkoutClose?.addEventListener('click', closeCheckout);
+checkoutModal?.addEventListener('click', e => {
+  if (e.target === checkoutModal) closeCheckout();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && checkoutModal?.classList.contains('open')) closeCheckout();
 });
 
 // Scroll reveal
@@ -1114,35 +1451,6 @@ function setBilling(annual) {
 }
 
 tog.addEventListener('change', () => setBilling(tog.checked));
-
-// Testimonials carousel
-const slides = document.querySelectorAll('.testimonial-slide');
-const dotsWrap = document.getElementById('testimonial-dots');
-let slideIdx = 0;
-let slideTimer;
-
-if (slides.length && dotsWrap) {
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.setAttribute('aria-label', 'Depoimento ' + (i + 1));
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goSlide(i, true));
-    dotsWrap.appendChild(dot);
-  });
-
-  function goSlide(i, resetTimer) {
-    slideIdx = i;
-    slides.forEach((s, j) => s.classList.toggle('active', j === i));
-    dotsWrap.querySelectorAll('button').forEach((d, j) => d.classList.toggle('active', j === i));
-    if (resetTimer) {
-      clearInterval(slideTimer);
-      slideTimer = setInterval(() => goSlide((slideIdx + 1) % slides.length, false), 6000);
-    }
-  }
-
-  slideTimer = setInterval(() => goSlide((slideIdx + 1) % slides.length, false), 6000);
-}
 
 // FAQ
 document.querySelectorAll('.faq-q').forEach(q => {
