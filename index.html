@@ -278,14 +278,6 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 }
 .plan-pick:hover { color: var(--text); }
 .plan-pick.active { background: var(--orange); color: white; box-shadow: 0 2px 12px rgba(232,69,10,.35); }
-.savings-banner {
-  text-align: center; padding: 12px 20px; margin-bottom: 24px;
-  background: var(--green-bg); border: 1px solid #BBF7D0;
-  border-radius: var(--radius); font-size: .9rem; color: var(--text2);
-  opacity: 1; transform: translateY(0); transition: opacity .3s, transform .3s;
-}
-.savings-banner.hidden { opacity: 0; transform: translateY(-8px); pointer-events: none; height: 0; padding: 0; margin: 0; border: none; overflow: hidden; }
-.savings-banner strong { color: var(--green); font-weight: 800; }
 
 /* ── SECTIONS ── */
 .container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
@@ -339,31 +331,6 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .pricing-dark .section-label { color: var(--orange-light); }
 .pricing-dark .section-title { color: var(--white); }
 .pricing-dark .section-sub { color: rgba(255,255,255,.62); }
-.billing-toggle {
-  display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 32px;
-}
-.billing-lbl { font-size: .875rem; font-weight: 500; color: var(--text3); transition: color .2s; }
-.billing-lbl.on { color: var(--text); }
-.pricing-dark .billing-lbl { color: rgba(255,255,255,.4); }
-.pricing-dark .billing-lbl.on { color: var(--white); }
-.toggle-switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
-.toggle-switch input { opacity: 0; position: absolute; width: 0; height: 0; }
-.switch-track {
-  position: absolute; inset: 0; background: var(--border); border-radius: 100px;
-  transition: background .25s;
-}
-.switch-track::after {
-  content: ''; position: absolute; width: 16px; height: 16px; top: 4px; left: 4px;
-  border-radius: 50%; background: white;
-  box-shadow: var(--shadow-sm); transition: transform .25s;
-}
-.toggle-switch input:checked + .switch-track { background: var(--orange); }
-.toggle-switch input:checked + .switch-track::after { transform: translateX(20px); }
-.annual-badge {
-  background: var(--green-bg); color: var(--green);
-  border: 1px solid #BBF7D0; font-size: .7rem; font-weight: 700;
-  padding: 2px 8px; border-radius: 100px; display: none;
-}
 .pricing-dark .plan-picker {
   background: rgba(255,255,255,.07);
   border-color: rgba(255,255,255,.12);
@@ -376,12 +343,6 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
   color: var(--white);
   box-shadow: 0 8px 28px rgba(232,69,10,.36);
 }
-.pricing-dark .savings-banner {
-  background: rgba(22,163,74,.12);
-  border-color: rgba(74,222,128,.25);
-  color: rgba(255,255,255,.7);
-}
-.pricing-dark .savings-banner strong { color: #4ADE80; }
 
 .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media(max-width:840px){ .plans-grid { grid-template-columns: 1fr; } }
@@ -434,30 +395,13 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .plan-name { font-size: 1.3rem; font-weight: 800; color: var(--text); }
 .plan-tagline { font-size: .82rem; color: var(--text3); margin-top: 4px; min-height: 34px; }
 .pricing-dark .plan-name,
-.pricing-dark .plan-price,
-.pricing-dark .plan-annual-price { color: var(--white); }
+.pricing-dark .plan-price { color: var(--white); }
 .pricing-dark .plan-tagline,
-.pricing-dark .plan-price small,
-.pricing-dark .plan-annual-price small,
-.pricing-dark .plan-annual-block .annual-was,
-.pricing-dark .plan-annual-block .annual-total .eq { color: rgba(255,255,255,.45); }
-.pricing-dark .plan-annual-block .annual-total { color: #4ADE80; }
+.pricing-dark .plan-price small { color: rgba(255,255,255,.45); }
 
 .plan-price-wrap { margin: 20px 0; }
 .plan-price { font-size: 2.4rem; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
 .plan-price small { font-size: .875rem; font-weight: 500; color: var(--text3); margin-left: 3px; }
-.plan-annual-block { display: none; }
-.plan-annual-block .annual-was {
-  font-size: .95rem; font-weight: 600; color: var(--text3);
-  text-decoration: line-through; margin-bottom: 6px;
-}
-.plan-annual-block .annual-was::before { content: 'De '; text-decoration: none; font-weight: 500; }
-.plan-annual-price { font-size: 2.4rem; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
-.plan-annual-price small { font-size: .875rem; font-weight: 500; color: var(--text3); margin-left: 3px; }
-.plan-annual-block .annual-total {
-  font-size: .78rem; color: var(--green); font-weight: 600; margin-top: 8px;
-}
-.plan-annual-block .annual-total .eq { color: var(--text3); font-weight: 500; }
 
 .plan-divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
 .pricing-dark .plan-divider { border-top-color: rgba(255,255,255,.1); }
@@ -762,7 +706,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
         <a href="#depoimentos" data-section="depoimentos">Depoimentos</a>
         <a href="#faq" data-section="faq">Dúvidas</a>
       </div>
-      <a href="#planos" class="btn-nav">Começar grátis</a>
+      <a href="#planos" class="btn-nav">Começar agora</a>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -773,7 +717,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
     <a href="#comparativo" data-section="comparativo">Comparativo</a>
     <a href="#depoimentos" data-section="depoimentos">Depoimentos</a>
     <a href="#faq" data-section="faq">Dúvidas</a>
-    <a href="#planos" class="btn-nav">Começar grátis</a>
+    <a href="#planos" class="btn-nav">Começar agora</a>
   </div>
 </nav>
 
@@ -858,20 +802,6 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
     <p class="section-sub" style="margin:10px auto 0">Sem fidelidade. Faça upgrade ou downgrade quando quiser.</p>
   </div>
 
-  <div class="billing-toggle">
-    <span class="billing-lbl on" id="lbl-m">Mensal</span>
-    <label class="toggle-switch">
-      <input type="checkbox" id="billing-tog" aria-label="Alternar entre preço mensal e anual">
-      <span class="switch-track"></span>
-    </label>
-    <span class="billing-lbl" id="lbl-a">Anual</span>
-    <span class="annual-badge" id="annual-badge">2 meses grátis</span>
-  </div>
-
-  <div class="savings-banner hidden" id="savings-banner">
-    No plano <strong id="savings-plan">Growth</strong>, você economiza <strong id="savings-amount">R$ 219</strong> por ano no anual
-  </div>
-
   <div class="plan-picker" role="tablist" aria-label="Selecionar plano">
     <button type="button" class="plan-pick" data-plan="start" role="tab">Start</button>
     <button type="button" class="plan-pick active" data-plan="growth" role="tab" aria-selected="true">Growth</button>
@@ -887,11 +817,6 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
       <div class="plan-tagline">Para quem está começando a vender online e no balcão.</div>
       <div class="plan-price-wrap">
         <div class="plan-price monthly-p">R$&nbsp;69,90 <small>/mês</small></div>
-        <div class="plan-annual-block annual-p">
-          <div class="annual-was">R$&nbsp;838,80</div>
-          <div class="plan-annual-price">R$&nbsp;699,00 <small>/ 12 meses</small></div>
-          <div class="annual-total">2 meses grátis <span class="eq">· equiv. R$&nbsp;58,25/mês</span></div>
-        </div>
       </div>
       <hr class="plan-divider">
       <ul class="feature-list">
@@ -916,11 +841,6 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
       <div class="plan-tagline">Operação mista completa com automações e IA.</div>
       <div class="plan-price-wrap">
         <div class="plan-price monthly-p">R$&nbsp;109,90 <small>/mês</small></div>
-        <div class="plan-annual-block annual-p">
-          <div class="annual-was">R$&nbsp;1.318,80</div>
-          <div class="plan-annual-price">R$&nbsp;1.099,00 <small>/ 12 meses</small></div>
-          <div class="annual-total">2 meses grátis <span class="eq">· equiv. R$&nbsp;91,58/mês</span></div>
-        </div>
       </div>
       <hr class="plan-divider">
       <ul class="feature-list">
@@ -944,11 +864,6 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
       <div class="plan-tagline">Stack completa para operações de alto volume.</div>
       <div class="plan-price-wrap">
         <div class="plan-price monthly-p">R$&nbsp;149,90 <small>/mês</small></div>
-        <div class="plan-annual-block annual-p">
-          <div class="annual-was">R$&nbsp;1.798,80</div>
-          <div class="plan-annual-price">R$&nbsp;1.499,00 <small>/ 12 meses</small></div>
-          <div class="annual-total">2 meses grátis <span class="eq">· equiv. R$&nbsp;124,92/mês</span></div>
-        </div>
       </div>
       <hr class="plan-divider">
       <ul class="feature-list">
@@ -1002,9 +917,9 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
       <thead>
         <tr>
           <th style="width:38%">Funcionalidade</th>
-          <th class="col-start" data-plan-col="start">Start<br><span class="cmp-price" data-m="R$69,90/mês" data-a="R$699/12 meses">R$69,90</span></th>
-          <th class="col-growth col-highlight" data-plan-col="growth">Growth<br><span class="cmp-price" data-m="R$109,90/mês" data-a="R$1.099/12 meses">R$109,90</span></th>
-          <th class="col-pro" data-plan-col="pro">Pro<br><span class="cmp-price" data-m="R$149,90/mês" data-a="R$1.499/12 meses">R$149,90</span></th>
+          <th class="col-start" data-plan-col="start">Start<br><span class="cmp-price" data-m="R$69,90/mês">R$69,90</span></th>
+          <th class="col-growth col-highlight" data-plan-col="growth">Growth<br><span class="cmp-price" data-m="R$109,90/mês">R$109,90</span></th>
+          <th class="col-pro" data-plan-col="pro">Pro<br><span class="cmp-price" data-m="R$149,90/mês">R$149,90</span></th>
         </tr>
       </thead>
       <tbody>
@@ -1184,7 +1099,7 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
     </div>
     <div class="faq-item">
       <button type="button" class="faq-q" aria-expanded="false">Posso cancelar quando quiser?<span class="faq-ico">+</span></button>
-      <div class="faq-a">Você tem 5 dias grátis para testar todo o sistema sem precisar de cartão. Após isso, o primeiro mês é sem contrato — você decide se continua. A partir daí, o plano tem fidelidade anual com 2 meses grátis, ou mensal sem fidelidade.</div>
+      <div class="faq-a">Sim. O plano é mensal e você pode cancelar quando quiser, sem fidelidade e sem letras miúdas.</div>
     </div>
   </div>
 </div>
@@ -1195,12 +1110,12 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
   <h2>Pronto para unificar<br><span>tudo em um lugar?</span></h2>
   <p>Balcão, salão e delivery sob controle. Comece agora.</p>
   <button type="button" class="btn-primary btn-lg js-scroll-planos">Escolher meu plano →</button>
-  <p class="cta-note">5 dias grátis para testar · 1 mês sem contrato · Suporte incluso</p>
+  <p class="cta-note">Sem fidelidade · Suporte incluso</p>
 </section>
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="sticky-cta">
-  <span class="sticky-cta-text">5 dias grátis · sem cartão</span>
+  <span class="sticky-cta-text">Sem fidelidade · suporte incluso</span>
   <button type="button" class="btn-primary js-scroll-planos">Começar agora →</button>
 </div>
 
@@ -1220,8 +1135,6 @@ footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
 </footer>
 
 <script>
-const PLAN_SAVINGS = { start: 139.80, growth: 219.80, pro: 299.80 };
-const PLAN_NAMES = { start: 'Start', growth: 'Growth', pro: 'Pro' };
 const COL_INDEX = { start: 1, growth: 2, pro: 3 };
 let selectedPlan = 'growth';
 
@@ -1230,8 +1143,6 @@ const navToggle = document.getElementById('nav-toggle');
 const navPanel = document.getElementById('nav-mobile-panel');
 const stickyCta = document.getElementById('sticky-cta');
 const hero = document.querySelector('.hero');
-const savingsBanner = document.getElementById('savings-banner');
-const tog = document.getElementById('billing-tog');
 const checkoutModal = document.getElementById('checkout-modal');
 const checkoutFrame = document.getElementById('checkout-frame');
 const checkoutClose = document.getElementById('checkout-close');
@@ -1397,7 +1308,6 @@ function selectPlan(plan) {
     btn.setAttribute('aria-selected', on);
   });
   highlightCompareCol(plan);
-  updateSavingsBanner();
 }
 
 document.querySelectorAll('.plan-pick').forEach(btn => {
@@ -1420,37 +1330,6 @@ document.querySelectorAll('.compare-table th[data-plan-col]').forEach(th => {
     document.getElementById('planos').scrollIntoView({ behavior: 'smooth' });
   });
 });
-
-// Billing toggle + savings
-const lblM = document.getElementById('lbl-m');
-const lblA = document.getElementById('lbl-a');
-const ab = document.getElementById('annual-badge');
-
-function updateSavingsBanner() {
-  if (!savingsBanner) return;
-  const annual = tog.checked;
-  savingsBanner.classList.toggle('hidden', !annual);
-  if (annual) {
-    document.getElementById('savings-plan').textContent = PLAN_NAMES[selectedPlan];
-    const s = PLAN_SAVINGS[selectedPlan];
-    document.getElementById('savings-amount').textContent =
-      'R$ ' + (Number.isInteger(s) ? s : s.toFixed(2).replace('.', ','));
-  }
-}
-
-function setBilling(annual) {
-  document.querySelectorAll('.monthly-p').forEach(el => el.style.display = annual ? 'none' : '');
-  document.querySelectorAll('.annual-p').forEach(el => el.style.display = annual ? '' : 'none');
-  lblM.classList.toggle('on', !annual);
-  lblA.classList.toggle('on', annual);
-  ab.style.display = annual ? 'inline' : 'none';
-  document.querySelectorAll('.cmp-price').forEach(el => {
-    el.textContent = annual ? el.dataset.a : el.dataset.m;
-  });
-  updateSavingsBanner();
-}
-
-tog.addEventListener('change', () => setBilling(tog.checked));
 
 // FAQ
 document.querySelectorAll('.faq-q').forEach(q => {
