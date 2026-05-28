@@ -40,6 +40,19 @@ fbq('track', 'PageView');
 
   gtag('config', 'G-B3H0LKMQF4');
 </script>
+<script>
+window.addEventListener('load', function () {
+  if (typeof kwaiq !== 'undefined') {
+    kwaiq.instance('311950151890301').track('initiatedCheckout');
+  }
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'InitiateCheckout');
+  }
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'begin_checkout');
+  }
+});
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
