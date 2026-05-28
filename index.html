@@ -1158,30 +1158,6 @@ const checkoutTitle = document.getElementById('checkout-title');
 const checkoutFallbackLink = document.getElementById('checkout-fallback-link');
 let checkoutFallbackTimer;
 
-const KWAI_PIXEL_ID = '311950151890301';
-const CHECKOUT_PLAN_TRACKING = {
-  Start: { value: 69.9, content_id: 'vyria-start' },
-  Growth: { value: 109.9, content_id: 'vyria-growth' },
-  Pro: { value: 149.9, content_id: 'vyria-pro' },
-};
-
-function trackKwaiInitiatedCheckout(planName) {
-  if (typeof kwaiq === 'undefined') return;
-  const plan = CHECKOUT_PLAN_TRACKING[planName];
-  if (!plan) return;
-  try {
-    kwaiq.instance(KWAI_PIXEL_ID).track('initiatedCheckout', {
-      content_id: plan.content_id,
-      content_type: 'product',
-      content_name: 'Plano ' + planName,
-      quantity: 1,
-      price: plan.value,
-      value: plan.value,
-      currency: 'BRL',
-    });
-  } catch (_) {}
-}
-
 // Scroll: nav shadow, sticky CTA, active section
 const sectionIds = ['planos', 'comparativo', 'depoimentos', 'faq'];
 const navLinks = document.querySelectorAll('[data-section]');
@@ -1233,7 +1209,6 @@ function openCheckout(url, planName, showFallback) {
   checkoutModal.classList.add('open');
   checkoutModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('checkout-open');
-  trackKwaiInitiatedCheckout(checkoutPlanName);
   checkoutFrame.src = checkoutUrl;
   if (showFallback) {
     checkoutFallbackTimer = setTimeout(() => {
